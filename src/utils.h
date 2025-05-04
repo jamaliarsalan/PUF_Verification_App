@@ -15,7 +15,7 @@ extern "C" {
  * @param ilen Length of the input data.
  * @param output Pointer to a 32-byte buffer where the hash will be written.
  */
-void sha256Hash(const unsigned char *input, size_t ilen, unsigned char output[32]);
+void sha256_hash(const unsigned char *input, size_t ilen, unsigned char output[32]);
 
 /**
  * @brief Converts a hexadecimal string to a byte array.
@@ -35,7 +35,7 @@ int hex_string_to_bytes(const char *hex, unsigned char *out, size_t out_size);
  * @param len Number of random bytes to generate.
  * @return 0 on success.
  */
-int randFunction(void *rng_state, unsigned char *output, size_t len);
+int rand_function(void *rng_state, unsigned char *output, size_t len);
 
 #ifdef __cplusplus
 }

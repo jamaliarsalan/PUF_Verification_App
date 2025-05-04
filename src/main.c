@@ -21,7 +21,7 @@ int main() {
     mbedtls_ecp_group grp;
 	mbedtls_ecp_point h, C;
 	
-    ret = initECC(&grp,&h,&C);
+    ret = init_ECC(&grp,&h,&C);
     if(ret!=0)
     {
         printf("ECC couldn't be initiliased\r\n");
@@ -39,7 +39,7 @@ int main() {
     // Import Commitment into C
     unsigned char commitment[COMMITMENT_BUFFER_SIZE];
     hex_string_to_bytes(input_hex, commitment, sizeof(commitment));
-    importCommitment(&grp, commitment, &C,COMMITMENT_BUFFER_SIZE);
+    import_commitment(&grp, commitment, &C,COMMITMENT_BUFFER_SIZE);
 
     // Read v, w, nonce
     unsigned char temp_buf[100];

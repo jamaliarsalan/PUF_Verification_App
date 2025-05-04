@@ -7,11 +7,11 @@
 #include "utils.h"
 
 
-int importCommitment(mbedtls_ecp_group *grp, const uint8_t *commitment, mbedtls_ecp_point *C, size_t commitment_buffer_size) {
+int import_commitment(mbedtls_ecp_group *grp, const uint8_t *commitment, mbedtls_ecp_point *C, size_t commitment_buffer_size) {
     return mbedtls_ecp_point_read_binary(grp, C, commitment, commitment_buffer_size);
 }
 
-int initECC(mbedtls_ecp_group *grp, mbedtls_ecp_point *h, mbedtls_ecp_point *C ){
+int init_ECC(mbedtls_ecp_group *grp, mbedtls_ecp_point *h, mbedtls_ecp_point *C ){
     mbedtls_ecp_group_init(grp);
 	mbedtls_ecp_point_init(h);
 	mbedtls_ecp_point_init(C);
@@ -32,7 +32,7 @@ int initECC(mbedtls_ecp_group *grp, mbedtls_ecp_point *h, mbedtls_ecp_point *C )
         return 1;
     }
     
-    res = mbedtls_ecp_mul(grp, h, &x, &grp->G, randFunction, NULL);
+    res = mbedtls_ecp_mul(grp, h, &x, &grp->G, rand_function, NULL);
     
     if (res != 0) {
         printf("Failed to generate h point: %d\n", res);
@@ -63,7 +63,7 @@ int verify_ECC(mbedtls_ecp_group *grp, mbedtls_ecp_point *g, mbedtls_ecp_point *
 	unsigned char buff2[olen + mbedtls_mpi_size(nonce)];
 	memcpy(buff2, buff, olen);
 	mbedtls_mpi_write_binary(nonce, buff2 + olen, sizeof(buff2) - olen);
-	sha256Hash(buff2, sizeof(buff2), sha256_result);
+	sha256_hash(buff2, sizeof(buff2), sha256_result);
 	mbedtls_mpi_read_string(&result_c, 16, sha256_result);
 
 	res = mbedtls_ecp_muladd(grp, &gh, result_v, g, result_w, h);  //  g * v + h * w

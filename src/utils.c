@@ -6,7 +6,7 @@
 #include "utils.h"
 
 
-void sha256Hash(const unsigned char *input, size_t ilen, unsigned char output[32]) {
+void sha256_hash(const unsigned char *input, size_t ilen, unsigned char output[32]) {
     mbedtls_sha256(input, ilen, output, 0);
 }
 
@@ -22,7 +22,7 @@ int hex_string_to_bytes(const char *hex, unsigned char *out, size_t out_size) {
     return 0;
 }
 
-int randFunction(void *rng_state, unsigned char *output, size_t len) {
+int rand_function(void *rng_state, unsigned char *output, size_t len) {
 
     size_t use_len;
 	int rnd;

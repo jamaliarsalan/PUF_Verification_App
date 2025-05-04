@@ -22,7 +22,7 @@ extern "C" {
  * @param commitment_buffer_size Size of the binary buffer.
  * @return 0 on success, non-zero on failure.
  */
-int importCommitment(mbedtls_ecp_group *grp, const uint8_t *commitment, mbedtls_ecp_point *C, size_t commitment_buffer_size);
+int import_commitment(mbedtls_ecp_group *grp, const uint8_t *commitment, mbedtls_ecp_point *C, size_t commitment_buffer_size);
 
 /**
  * @brief Initializes ECC group and points (G, h, and C).
@@ -32,7 +32,7 @@ int importCommitment(mbedtls_ecp_group *grp, const uint8_t *commitment, mbedtls_
  * @param C Output point to be initialized.
  * @return 0 on success, 1 on failure.
  */
-int initECC(mbedtls_ecp_group *grp, mbedtls_ecp_point *h, mbedtls_ecp_point *C);
+int init_ECC(mbedtls_ecp_group *grp, mbedtls_ecp_point *h, mbedtls_ecp_point *C);
 
 /**
  * @brief Verifies ECC proof using the verifier equation.
